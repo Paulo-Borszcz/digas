@@ -1,4 +1,3 @@
-// lib/mongodb.ts
 import mongoose from 'mongoose';
 
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -13,10 +12,10 @@ interface MongooseCache {
 }
 
 declare global {
-  var mongoose: MongooseCache;
+  var mongoose: MongooseCache | undefined;
 }
 
-let cached: MongooseCache = global.mongoose;
+let cached: MongooseCache = global.mongoose || { conn: null, promise: null };
 
 if (!cached) {
   cached = global.mongoose = { conn: null, promise: null };

@@ -1,51 +1,45 @@
-// src/app/page.tsx
-'use client';
+import { Suspense } from 'react';
+import DigaCounter from '@/components/DigaCounter';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getInitialCount } from '@/lib/actions';
+import { Skeleton } from "@/components/ui/skeleton";
+import { MegaphoneIcon } from 'lucide-react';
 
-import { useState, useEffect } from 'react';
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-
-export default function Home() {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    fetchCount();
-  }, []);
-
-  const fetchCount = async () => {
-    const res = await fetch('/api/getCount');
-    const data = await res.json();
-    setCount(data.count);
-  };
-
-  const incrementCount = async () => {
-    const res = await fetch('/api/increment', { method: 'POST' });
-    const data = await res.json();
-    setCount(data.count);
-  };
-
-  const bill = (count * 0.10).toFixed(2);
+export default async function Home() {
+  const initialCount = await getInitialCount();
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <Card className="w-96">
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">Contador de "Diga" do Luís</CardTitle>
+    <main className="min-h-screen bg-gradient-to-b from-blue-100 to-white flex items-center justify-center p-4">
+      <Card className="w-full max-w-md shadow-lg">
+        <CardHeader className="space-y-1">
+          <div className="flex items-center justify-center space-x-2">
+            <MegaphoneIcon className="h-6 w-6 text-blue-500" />
+            <CardTitle className="text-2xl font-bold text-center">Contador de Palavras Proibidas</CardTitle>
+          </div>
+            <p className="text-center text-sm text-muted-foreground">Acompanhe e conte os "Digas" e "Papo Retos" ditos pelo Luis</p>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="text-center">
-            <p className="text-4xl font-bold">{count}</p>
-            <p className="text-gray-500">Total de "Diga" falado</p>
-          </div>
-          <div className="text-center">
-            <p className="text-2xl font-semibold">R$ {bill}</p>
-            <p className="text-gray-500">Dívida Atual</p>
-          </div>
-          <Button onClick={incrementCount} className="w-full">
-            Adicionar novo "Diga"
-          </Button>
+          <Suspense fallback={<DigaCounterSkeleton />}>
+            <DigaCounter initialCount={initialCount} />
+          </Suspense>
         </CardContent>
       </Card>
+    </main>
+  );
+}
+
+function DigaCounterSkeleton() {
+  return (
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <Skeleton className="h-8 w-24 mx-auto" />
+        <Skeleton className="h-4 w-32 mx-auto" />
+      </div>
+      <div className="space-y-2">
+        <Skeleton className="h-6 w-28 mx-auto" />
+        <Skeleton className="h-4 w-32 mx-auto" />
+      </div>
+      <Skeleton className="h-10 w-full" />
     </div>
   );
 }
