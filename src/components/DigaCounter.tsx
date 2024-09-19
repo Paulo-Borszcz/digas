@@ -16,8 +16,8 @@ export default function DigaCounter({ initialCount }: { initialCount: number }) 
     const newCount = await incrementCount();
     setCount(newCount);
     toast({
-      title: "Diga Contabilizado!",
-      description: `O Total de Palavras Proibidas ditas pelo Luis, agora é: ${newCount}`,
+      title: "Diga Counted!",
+      description: `Total count is now ${newCount}`,
     });
   };
 
@@ -30,15 +30,15 @@ export default function DigaCounter({ initialCount }: { initialCount: number }) 
         <Badge variant="secondary" className="text-lg px-3 py-1">
           {count}
         </Badge>
-        <p className="text-sm text-muted-foreground">Total de "Digas" e "Papo Reto"</p>
+        <p className="text-sm text-muted-foreground">Total "Digas" said</p>
       </div>
       <Progress value={progress} className="w-full" />
       <div className="text-center space-y-2">
         <p className="text-2xl font-semibold">R$ {bill}</p>
-        <p className="text-sm text-muted-foreground">Dívida Atual</p>
+        <p className="text-sm text-muted-foreground">Current bill</p>
       </div>
       <Button onClick={handleIncrement} className="w-full" size="lg">
-        <PlusCircleIcon className="mr-2 h-4 w-4" /> Adicionar
+        <PlusCircleIcon className="mr-2 h-4 w-4" /> Increment "Diga"
       </Button>
     </div>
   );
