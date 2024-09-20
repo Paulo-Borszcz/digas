@@ -23,10 +23,10 @@ export default async function HistoryPage() {
     <main className="min-h-screen bg-gradient-to-b from-blue-100 to-white p-4">
       <Card className="w-full max-w-4xl mx-auto">
         <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle className="text-2xl font-bold">Word History</CardTitle>
+          <CardTitle className="text-2xl font-bold">Histórico de Palavras</CardTitle>
           <Link href="/">
             <Button variant="outline">
-              <ArrowLeft className="mr-2 h-4 w-4" /> Back to Counter
+              <ArrowLeft className="mr-2 h-4 w-4" /> Voltar a Página Inicial
             </Button>
           </Link>
         </CardHeader>
