@@ -1,12 +1,25 @@
-import { Suspense } from 'react';
+"use client"
+import { Suspense, useEffect, useState } from 'react';
 import DigaCounter from '@/components/DigaCounter';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getInitialCount } from '@/lib/actions';
 import { Skeleton } from "@/components/ui/skeleton";
 import { MegaphoneIcon } from 'lucide-react';
 
-export default async function Home() {
-  const { count, bill, wordCounts } = await getInitialCount();
+
+export default function Home() {
+  const [data, setData] = useState({ count: 0, bill: 0, wordCounts: { Diga: 0, 'Papo Reto': 0 } });
+
+  const fetchData = async () => {
+    const initialData = await getInitialCount();
+    setData(initialData);
+  };
+
+  useEffect(() => {
+    fetchData();
+    const interval = setInterval(fetchData, 60000); // Atualiza a cada 60 segundos
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-blue-100 to-white flex items-center justify-center p-4">
@@ -20,7 +33,7 @@ export default async function Home() {
         </CardHeader>
         <CardContent className="space-y-4">
           <Suspense fallback={<DigaCounterSkeleton />}>
-            <DigaCounter initialCount={count} initialBill={bill} initialWordCounts={wordCounts} />
+            <DigaCounter initialCount={data.count} initialBill={data.bill} initialWordCounts={data.wordCounts} />
           </Suspense>
         </CardContent>
       </Card>
