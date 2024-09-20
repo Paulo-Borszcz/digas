@@ -17,9 +17,9 @@ export default async function Home() {
         <CardHeader className="space-y-1">
           <div className="flex items-center justify-center space-x-2">
             <MegaphoneIcon className="h-6 w-6 text-blue-500" />
-            <CardTitle className="text-2xl font-bold text-center">Luis' Word Counter</CardTitle>
+            <CardTitle className="text-2xl font-bold text-center">Contador de Palavras Proibidas</CardTitle>
           </div>
-          <p className="text-center text-sm text-muted-foreground">Track and count Luis' words</p>
+            <p className="text-center text-sm text-muted-foreground">Acompanhe e conte as palavras de Luis</p>
         </CardHeader>
         <CardContent className="space-y-4">
           <Suspense fallback={<DigaCounterSkeleton />}>

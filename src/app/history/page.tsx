@@ -35,10 +35,10 @@ export default async function HistoryPage() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Word</TableHead>
-                  <TableHead>Reason</TableHead>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Time</TableHead>
+                  <TableHead>Palavra</TableHead>
+                  <TableHead>Motivo</TableHead>
+                  <TableHead>Data</TableHead>
+                  <TableHead>Horário</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

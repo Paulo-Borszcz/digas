@@ -38,14 +38,14 @@ export default function DigaCounter({ initialCount, initialBill, initialWordCoun
       setBill(result.bill);
       setWordCounts(result.wordCounts);
       toast({
-        title: `${word} Counted!`,
-        description: `Total count is now ${result.count}`,
+        title: `${word} Contabilizado!`,
+        description: `O Total agora é ${result.count}`,
       });
     } catch (error) {
-      console.error('Error incrementing count:', error);
+      console.error('Erro ao incrementar a contagem:', error);
       toast({
-        title: "Error",
-        description: "Failed to update count. Please try again.",
+        title: "Erro",
+        description: "Falha ao atualizar a contagem. Por favor, tente novamente.",
         variant: "destructive",
       });
     } finally {
@@ -61,20 +61,20 @@ export default function DigaCounter({ initialCount, initialBill, initialWordCoun
         <Badge variant="secondary" className="text-lg px-3 py-1">
           {count}
         </Badge>
-        <p className="text-sm text-muted-foreground">Total words said</p>
+        <p className="text-sm text-muted-foreground">Total de Palavras Ditas</p>
       </div>
       <Progress value={progress} className="w-full" />
       <div className="text-center space-y-2">
         <p className="text-2xl font-semibold">
           R$ {typeof bill === 'number' ? bill.toFixed(2) : '0.00'}
         </p>
-        <p className="text-sm text-muted-foreground">Current bill</p>
+        <p className="text-sm text-muted-foreground">Dívida Atual</p>
       </div>
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Word</TableHead>
-            <TableHead className="text-right">Count</TableHead>
+            <TableHead>Palavra</TableHead>
+            <TableHead className="text-right">Quantidade</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -90,11 +90,11 @@ export default function DigaCounter({ initialCount, initialBill, initialWordCoun
       </Table>
       <div className="flex justify-between items-center">
         <Button onClick={() => setIsModalOpen(true)} className="flex-1 mr-2" size="lg">
-          <PlusCircleIcon className="mr-2 h-4 w-4" /> Add Word
+          <PlusCircleIcon className="mr-2 h-4 w-4" /> Adicionar Palavra
         </Button>
         <Link href="/history">
           <Button variant="outline" size="lg">
-            <ClockIcon className="mr-2 h-4 w-4" /> View History
+            <ClockIcon className="mr-2 h-4 w-4" /> Visualizar Histórico
           </Button>
         </Link>
       </div>
