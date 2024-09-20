@@ -6,7 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { MegaphoneIcon } from 'lucide-react';
 
 export default async function Home() {
-  const { count, bill } = await getInitialCount();
+  const { count, bill, wordCounts } = await getInitialCount();
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-blue-100 to-white flex items-center justify-center p-4">
@@ -14,13 +14,13 @@ export default async function Home() {
         <CardHeader className="space-y-1">
           <div className="flex items-center justify-center space-x-2">
             <MegaphoneIcon className="h-6 w-6 text-blue-500" />
-            <CardTitle className="text-2xl font-bold text-center">Contador de Palavras Proibidas</CardTitle>
+            <CardTitle className="text-2xl font-bold text-center">Luis' Word Counter</CardTitle>
           </div>
-            <p className="text-center text-sm text-muted-foreground">Acompanhe e conte as palavras de Luis</p>
+          <p className="text-center text-sm text-muted-foreground">Track and count Luis' words</p>
         </CardHeader>
         <CardContent className="space-y-4">
           <Suspense fallback={<DigaCounterSkeleton />}>
-            <DigaCounter initialCount={count} initialBill={bill} />
+            <DigaCounter initialCount={count} initialBill={bill} initialWordCounts={wordCounts} />
           </Suspense>
         </CardContent>
       </Card>

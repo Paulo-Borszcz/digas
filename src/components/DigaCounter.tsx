@@ -5,9 +5,10 @@ import { Button } from "@/components/ui/button";
 import { incrementCount, getWordCounts } from '@/lib/actions';
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { PlusCircleIcon } from 'lucide-react';
+import { ClockIcon, PlusCircleIcon } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import AddWordModal from './AddWordModal';
+import Link from 'next/link';
 import {
   Table,
   TableBody,
@@ -17,10 +18,23 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+
 interface DigaCounterProps {
+
   initialCount: number;
+
   initialBill: number;
+
+  initialWordCounts: {
+
+    Diga: number;
+
+    'Papo Reto': number;
+
+  };
+
 }
+
 
 interface WordCounts {
   Diga: number;
@@ -109,9 +123,17 @@ export default function DigaCounter({ initialCount, initialBill }: DigaCounterPr
           </TableRow>
         </TableBody>
       </Table>
+      <div className='flex flex-col gap-3'>
       <Button onClick={() => setIsModalOpen(true)} className="w-full" size="lg">
         <PlusCircleIcon className="mr-2 h-4 w-4" /> Luis falou uma Palavra
       </Button>
+      <Link href='/history'>
+      <Button variant="outline" size="lg">
+        <ClockIcon className='mr-2 h-4 w-4'/>
+        Visualizar Histórico
+      </Button>
+      </Link>
+      </div>
       <AddWordModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSubmit={handleIncrement} />
     </div>
   );

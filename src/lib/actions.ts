@@ -45,3 +45,9 @@ export async function incrementCount(word: string, reason: string) {
     wordCounts: { Diga: counter.digaCount, 'Papo Reto': counter.papoRetoCount }
   };
 }
+
+export async function getWordHistory() {
+  await dbConnect();
+  const counter = await Counter.findOne({ name: 'luis' });
+  return counter ? counter.words.sort((a: any, b: any) => b.timestamp - a.timestamp) : [];
+}
