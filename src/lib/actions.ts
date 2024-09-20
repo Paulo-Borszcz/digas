@@ -49,5 +49,5 @@ export async function incrementCount(word: string, reason: string) {
 export async function getWordHistory() {
   await dbConnect();
   const counter = await Counter.findOne({ name: 'luis' });
-  return counter ? counter.words.sort((a: any, b: any) => b.timestamp - a.timestamp) : [];
+  return counter ? counter.words.sort((a : any, b : any) => b.timestamp - a.timestamp) : [];
 }

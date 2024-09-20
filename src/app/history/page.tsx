@@ -9,10 +9,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { formatDistanceToNow } from 'date-fns';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function HistoryPage() {
   const wordHistory = await getWordHistory();
@@ -21,26 +23,26 @@ export default async function HistoryPage() {
     <main className="min-h-screen bg-gradient-to-b from-blue-100 to-white p-4">
       <Card className="w-full max-w-4xl mx-auto">
         <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle className="text-2xl font-bold">Histórico de Palavras</CardTitle>
+          <CardTitle className="text-2xl font-bold">Word History</CardTitle>
           <Link href="/">
             <Button variant="outline">
-              <ArrowLeft className="mr-2 h-4 w-4" /> Voltar ao Menu Inicial
+              <ArrowLeft className="mr-2 h-4 w-4" /> Back to Counter
             </Button>
           </Link>
         </CardHeader>
         <CardContent>
-          <Suspense fallback={<p>Carregando Histórico...</p>}>
+          <Suspense fallback={<p>Loading history...</p>}>
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Palavra</TableHead>
-                  <TableHead>Motivo</TableHead>
-                  <TableHead>Data</TableHead>
-                  <TableHead>Horário</TableHead>
+                  <TableHead>Word</TableHead>
+                  <TableHead>Reason</TableHead>
+                  <TableHead>Date</TableHead>
+                  <TableHead>Time</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {wordHistory.map((entry: { word: string; reason: string; timestamp: string }, index: number) => (
+                {wordHistory.map((entry : any, index : any) => (
                   <TableRow key={index}>
                     <TableCell>{entry.word}</TableCell>
                     <TableCell>{entry.reason}</TableCell>
